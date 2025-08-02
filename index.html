@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing Mini Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Racing Game</h1>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="speed">Speed: <span id="speed">0</span> mph</div>
+        </div>
+        
+        <div class="game-area" id="gameArea">
+            <div class="road">
+                <div class="lane-divider"></div>
+                <div class="lane-divider"></div>
+                <div class="lane-divider"></div>
+            </div>
+            
+            <div class="player-car" id="playerCar"></div>
+            
+            <div class="obstacles" id="obstacles"></div>
+        </div>
+        
+        <div class="game-controls">
+            <div class="instructions">
+                <p>Use ARROW KEYS to steer</p>
+                <p>SPACE to brake</p>
+            </div>
+            <button id="startBtn" class="start-btn">Start Game</button>
+            <button id="pauseBtn" class="pause-btn" style="display: none;">Pause</button>
+        </div>
+        
+        <div class="game-over" id="gameOver" style="display: none;">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <button id="restartBtn" class="restart-btn">Play Again</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
