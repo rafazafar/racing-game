@@ -10,6 +10,14 @@ class RacingGame {
         this.gameOverDiv = document.getElementById('gameOver');
         this.finalScoreElement = document.getElementById('finalScore');
         this.restartBtn = document.getElementById('restartBtn');
+        
+        // Touch control elements
+        this.touchControls = document.getElementById('touchControls');
+        this.leftBtn = document.getElementById('leftBtn');
+        this.rightBtn = document.getElementById('rightBtn');
+        this.upBtn = document.getElementById('upBtn');
+        this.downBtn = document.getElementById('downBtn');
+        this.brakeBtn = document.getElementById('brakeBtn');
 
         this.gameWidth = this.gameArea.offsetWidth;
         this.gameHeight = this.gameArea.offsetHeight;
@@ -37,11 +45,15 @@ class RacingGame {
             space: false
         };
 
+        // Detect if device has touch capability
+        this.isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
         this.init();
     }
 
     init() {
         this.setupEventListeners();
+        this.setupTouchControls();
         this.updateCarPosition();
     }
 
@@ -54,6 +66,91 @@ class RacingGame {
         document.addEventListener('keyup', (e) => this.handleKeyUp(e));
 
         window.addEventListener('resize', () => this.handleResize());
+    }
+
+    setupTouchControls() {
+        if (this.isMobile) {
+            this.touchControls.style.display = 'block';
+        }
+
+        // Left button
+        this.leftBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.keys.left = true;
+        });
+        this.leftBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.keys.left = false;
+        });
+
+        // Right button
+        this.rightBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.keys.right = true;
+        });
+        this.rightBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.keys.right = false;
+        });
+
+        // Up button
+        this.upBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.keys.up = true;
+        });
+        this.upBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.keys.up = false;
+        });
+
+        // Down button
+        this.downBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.keys.down = true;
+        });
+        this.downBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.keys.down = false;
+        });
+
+        // Brake button
+        this.brakeBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.keys.space = true;
+        });
+        this.brakeBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.keys.space = false;
+        });
+
+        // Also add mouse events for desktop testing
+        [this.leftBtn, this.rightBtn, this.upBtn, this.downBtn, this.brakeBtn].forEach(btn => {
+            btn.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                if (btn === this.leftBtn) this.keys.left = true;
+                if (btn === this.rightBtn) this.keys.right = true;
+                if (btn === this.upBtn) this.keys.up = true;
+                if (btn === this.downBtn) this.keys.down = true;
+                if (btn === this.brakeBtn) this.keys.space = true;
+            });
+            
+            btn.addEventListener('mouseup', (e) => {
+                e.preventDefault();
+                if (btn === this.leftBtn) this.keys.left = false;
+                if (btn === this.rightBtn) this.keys.right = false;
+                if (btn === this.upBtn) this.keys.up = false;
+                if (btn === this.downBtn) this.keys.down = false;
+                if (btn === this.brakeBtn) this.keys.space = false;
+            });
+            
+            btn.addEventListener('mouseleave', (e) => {
+                if (btn === this.leftBtn) this.keys.left = false;
+                if (btn === this.rightBtn) this.keys.right = false;
+                if (btn === this.upBtn) this.keys.up = false;
+                if (btn === this.downBtn) this.keys.down = false;
+                if (btn === this.brakeBtn) this.keys.space = false;
+            });
+        });
     }
 
     handleKeyDown(e) {
@@ -119,6 +216,11 @@ class RacingGame {
         this.startBtn.style.display = 'none';
         this.pauseBtn.style.display = 'inline-block';
         this.gameOverDiv.style.display = 'none';
+        
+        // Show touch controls during gameplay on mobile
+        if (this.isMobile) {
+            this.touchControls.style.display = 'block';
+        }
 
         this.clearObstacles();
         this.resetPlayerPosition();

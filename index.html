@@ -26,10 +26,22 @@
             <div class="obstacles" id="obstacles"></div>
         </div>
         
+        <div class="touch-controls" id="touchControls" style="display: none;">
+            <div class="steering-controls">
+                <button class="touch-btn left-btn" id="leftBtn">◀</button>
+                <div class="center-controls">
+                    <button class="touch-btn up-btn" id="upBtn">▲</button>
+                    <button class="touch-btn down-btn" id="downBtn">▼</button>
+                </div>
+                <button class="touch-btn right-btn" id="rightBtn">▶</button>
+            </div>
+            <button class="touch-btn brake-btn" id="brakeBtn">🛑</button>
+        </div>
+        
         <div class="game-controls">
             <div class="instructions">
-                <p>Use ARROW KEYS to steer</p>
-                <p>SPACE to brake</p>
+                <p class="desktop-instructions">Use ARROW KEYS to steer, SPACE to brake</p>
+                <p class="mobile-instructions">Use touch controls below to play</p>
             </div>
             <button id="startBtn" class="start-btn">Start Game</button>
             <button id="pauseBtn" class="pause-btn" style="display: none;">Pause</button>

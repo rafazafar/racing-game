@@ -216,7 +216,86 @@ body {
     margin-bottom: 25px;
 }
 
+/* Touch Controls */
+.touch-controls {
+    display: none;
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 15px;
+    margin: 20px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.steering-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.touch-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.touch-btn:active {
+    background: #c0392b;
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brake-btn {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+}
+
+.desktop-instructions {
+    display: block;
+}
+
+.mobile-instructions {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+    
     .game-container {
         margin: 10px;
         padding: 15px;
@@ -238,5 +317,51 @@ body {
     .player-car, .obstacle {
         width: 35px;
         height: 70px;
+    }
+    
+    .touch-controls {
+        display: block;
+    }
+    
+    .desktop-instructions {
+        display: none;
+    }
+    
+    .mobile-instructions {
+        display: block;
+    }
+    
+    .touch-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .brake-btn {
+        width: 70px;
+        height: 50px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-area {
+        height: 350px;
+    }
+    
+    .steering-controls {
+        max-width: 250px;
+    }
+    
+    .touch-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .brake-btn {
+        width: 60px;
+        height: 45px;
+        font-size: 0.9rem;
     }
 }
